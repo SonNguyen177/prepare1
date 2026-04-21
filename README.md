@@ -3,7 +3,7 @@
 - Mở thư mục trên VSCode cho dễ theo dõi file
 - Copy source code, ko có các file markdown vào thư mục setup sẵn git
 - Chuyển thư mục làm việc đến *cd /Users/bobby/DATA/AI/Claude_Code/Hackathon/prepare1*
-- Cài đặt bmad-method bằng lệnh *npx bmad-method install* | **(+1 phút)**, chọn BMCore, Tea, CIS, Tiếng việt
+- Cài đặt bmad-method bằng lệnh *npx bmad-method install* | **(+1 phút)**, chọn BMCore, Tea, CIS, Tiếng việt. Chú ý là cài bằng terminal bên ngoài, ko cài trong claude tránh lỗi
 
 1. Khởi chạy claude code
 - Chạy */claude* trên thư mục gốc
@@ -14,12 +14,12 @@
 2. Thực hiện đọc codebase/ build context từ bmad-method
 
 // check nodejs version để cbi cai bmad-method
-# node -v
+*node -v*
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 nvm install 25
 
 Prerequisites: Node.js v20+ · Python 3.10+ · uv
-# uv --version
+*uv --version*
 
 - Sau khi cài đặt xong mở thư mục repo bằng VSCode
 - Kiểm tra các folder _bmad đã sinh ra, ví dụ _bmad-output
@@ -41,8 +41,22 @@ Tự thêm đoạn rule sau vào file context :
 - Project này là để tham gia một cuộc thi AI Mini Hackathon ngắn với tổng thời gian là 01 giờ. Số lượng thành viên 04 người. Nhiệm vụ chính là phát triển tính năng mới và tìm và fix bug có sẵn
 - Yêu cầu luôn bám sát rule này để đưa ra quyết định phù hợp về mặt thời gian và tài nguyên sử dụng trong cuộc thi
 
-Sửa file CLAUDE.md , yêu cầu luôn đọc file _bmad-output/project-context.md để nắm rõ về hệ thống
-thêm đoạn config mcp playwright
+### Sửa file CLAUDE.md
+- Sửa file CLAUDE.md , yêu cầu luôn đọc file _bmad-output/project-context.md để nắm rõ về hệ thống
+và thêm đoạn config MCP Playwright
 
+ví dụ : 
+## Other rules
+- Đọc file `/_bmad-output/project-context.md` cẩn thận để nắm bắt rõ ràng về hệ thống
 
-                                                           TYhee                                                                                                    
+## MCP Servers
+
+### Playwright (browser testing)
+
+Configured in `.mcp.json`. Uses `@playwright/mcp` to automate browser interactions for testing the Admin (:3001) and Client (:3000) UIs.
+
+- Yêu cầu claude code "chạy file @run.sh xem hệ thống có lỗi gì không". Claude sẽ kiểm tra từng service. nếu OK sẽ bảo mình mở terminal chạy run script
+- Chạy ok, commit code và push lên server
+
+-------------------------------------
+Tổng thời gian đến đây khoảng 15 phút
