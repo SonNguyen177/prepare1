@@ -1,30 +1,48 @@
 ## README.md
-- Setup từ 1 folder git, chỉ có file gitignore
-- Copy source code, ko có các file markdown
-- Chạy /claude trên thư mục
-- Chọn đúng model = /model opus 4.6
-- init file CLAUDE.md = /init
-- Thực hiện đọc codebase/ build context từ bmad
+- Setup từ 1 folder **.git**, chỉ có file *.gitignore* và file *README.md*
+- Mở thư mục trên VSCode cho dễ theo dõi file
+- Copy source code, ko có các file markdown vào thư mục setup sẵn git
+- Chuyển thư mục làm việc đến *cd /Users/bobby/DATA/AI/Claude_Code/Hackathon/prepare1*
+- Cài đặt bmad-method bằng lệnh *npx bmad-method install* | **(+1 phút)**, chọn BMCore, Tea, CIS, Tiếng việt
 
-// check nodejs version
-node -v
+1. Khởi chạy claude code
+- Chạy */claude* trên thư mục gốc
+- Chọn đúng model = */model* opus 4.7
+- init file CLAUDE.md = */init* | **(+1:08)**
+- Kiểm tra nội dung file CLAUDE.md
+
+2. Thực hiện đọc codebase/ build context từ bmad-method
+
+// check nodejs version để cbi cai bmad-method
+# node -v
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 nvm install 25
 
-// chuyen thu mục lam viec:
-
-cd /Users/bobby/DATA/AI\ /Claude\ Code/Hackathon/bmad-engine
-
-//install bmad
-
-npx bmad-method install
+Prerequisites: Node.js v20+ · Python 3.10+ · uv
+# uv --version
 
 - Sau khi cài đặt xong mở thư mục repo bằng VSCode
-- Kiểm tra các folder _bmad đã sinh ra
+- Kiểm tra các folder _bmad đã sinh ra, ví dụ _bmad-output
 
-// chạy claude trên thư mục hiện tại
- claude
+- Đọc codebase và tạo context cho dự án : 
+ **/bmad-generate-project-context** : 22:32 -> **(+7 phút)**
+Chọn C để tiếp tục các bước trong flow : sẽ có file _bmad-output/project-context.md
 
- Bước 1: Đọc codebase và tạo context cho dự án : 
- /bmad-generate-project-context : +2 phút
- - ghi xuống thành các section của project-context.md (7 categories : tech stack, language-rule, framework-rules, testing-rules, code quality, workflow rule, critical-rules) => hoàn thành sau hơn +10 phút
+ Category 1: Technology Stack & Versions 
+ Category 2: Language-Specific Rules.
+ Category 3: Framework-Specific Rules.
+ Category 4: Testing Rules.
+ Category 5: Code Quality & Style Rules.
+ Category 6: Development Workflow Rules.
+ Category 7: Critical Don't-Miss Rules (category cuối).
+
+Tự thêm đoạn rule sau vào file context :
+### Other Rules
+- Project này là để tham gia một cuộc thi AI Mini Hackathon ngắn với tổng thời gian là 01 giờ. Số lượng thành viên 04 người. Nhiệm vụ chính là phát triển tính năng mới và tìm và fix bug có sẵn
+- Yêu cầu luôn bám sát rule này để đưa ra quyết định phù hợp về mặt thời gian và tài nguyên sử dụng trong cuộc thi
+
+Sửa file CLAUDE.md , yêu cầu luôn đọc file _bmad-output/project-context.md để nắm rõ về hệ thống
+thêm đoạn config mcp playwright
+
+
+                                                           TYhee                                                                                                    
