@@ -62,9 +62,19 @@ Configured in `.mcp.json`. Uses `@playwright/mcp` to automate browser interactio
 Tổng thời gian đến đây khoảng 15 phút
 
  Bước 2 : Phát triển tính năng mới
- - clear context
+ - clear context, chọn planning mode
  - Chạy luồng 'bmad-quick-dev'
  - "Thêm tính năng cho phép huỷ toàn bộ lệnh đang trong queue. Chức năng huỷ tất cả lệnh chờ khớp, tất cả các mã trên hệ thống. Chức năng được dùng trên admin page" => hỏi và đáp để làm rõ yêu cầu
  - Tạo ra dc file :  "spec-cancel-all-orders.md"
  - Spec sẽ chạy qua các status sau Draft -> ready-for-dev -> in-progress -> in-review => done
  - Thực thi implement + test => mất khoảng 10 phút
+
+Ví dụ
+gọi /bmad-quick-dev (23:33 )
+   Thêm tính năng vẽ chart thống kê lịch sử khớp lệnh trên web client
+  - Chart cho phép view dạng nến và dạng line
+  - Chart gồm các trục thời gian khoảng từ 8 đến 15h, khối lượng và giá khớp
+  - Có option xem 1 mã hoặc nhiều mã trên chart
+  - Yêu cầu giao diện dễ nhìn, theo style của tradingview thì càng tốt
+
+  => mất 7 phút, đang ở bước review = 3 agents khác nhau
