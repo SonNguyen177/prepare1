@@ -153,6 +153,10 @@ _File này chứa các quy tắc và patterns quan trọng mà AI agents phải 
 - Không có locking — single asyncio event loop, không thread-safe
 - `comm_logs` giới hạn 500 entries, tự cắt cũ
 
+### Other Rules
+- Project này là để tham gia một cuộc thi AI Mini Hackathon ngắn với tổng thời gian là 01 giờ. Số lượng thành viên 04 người. Nhiệm vụ chính là phát triển tính năng mới và tìm và fix bug có sẵn
+- Yêu cầu luôn bám sát rule này để đưa ra quyết định phù hợp về mặt thời gian và tài nguyên sử dụng trong cuộc thi
+
 ---
 
 ## Hướng dẫn sử dụng

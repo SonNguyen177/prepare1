@@ -73,3 +73,12 @@ npm run build
 ## Testing
 
 Tests use `pytest-asyncio` with `asyncio_mode = "auto"`. Test files cover: order book operations, matching logic, REST API (via `httpx` TestClient), FIX message building/parsing, cancel-all, and order amendments.
+
+## Other rules
+- Đọc file `/_bmad-output/project-context.md` cẩn thận để nắm bắt rõ ràng về hệ thống
+
+## MCP Servers
+
+### Playwright (browser testing)
+
+Configured in `.mcp.json`. Uses `@playwright/mcp` to automate browser interactions for testing the Admin (:3001) and Client (:3000) UIs.
