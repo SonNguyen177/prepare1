@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import OrderEntry from './components/OrderEntry.jsx'
 import OrderBook from './components/OrderBook.jsx'
 import TradeFeed from './components/TradeFeed.jsx'
+import TradeChart from './components/TradeChart.jsx'
 
 const API = ''
 
@@ -111,6 +112,12 @@ export default function App() {
           symbol={selectedSymbol}
         />
       </div>
+
+      <TradeChart
+        trades={trades}
+        selectedSymbol={selectedSymbol}
+        configs={configs}
+      />
 
       {myOrders.filter(o => o.status === 'NEW' || o.status === 'PARTIALLY_FILLED').length > 0 && (
         <div style={styles.myOrders}>
