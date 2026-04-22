@@ -157,3 +157,12 @@ Mỗi bug: ID | Priority | Hệ thống | Mô tả | Step test manual
 
 RÀNG BUỘC: Không thay đổi API interface, FIX format. 
 Không refactor ngoài phạm vi bug. Mỗi fix phải có test.
+
+report-e2e.md
+ - ID testcase dạng [E2E-1, E2E-2, E2E-3...]
+ - [ ] Fixed
+ - Severity: P0/P1/P2/P3
+ - Mô tả lỗi
+ - Step test để tái hiện khi test manual
+ - Suggested fix (1-2 dòng)
+ 
