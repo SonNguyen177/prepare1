@@ -96,7 +96,6 @@ td.teal   { color:#56d4db; }
 <body>
 
 <h1>Lite Matching Engine — System Architecture</h1>
-<p class="subtitle">Luồng đặt lệnh &amp; khớp lệnh · ACB · FPT · VCK</p>
 
 <div class="svg-wrap">
 <svg viewBox="0 0 920 700" width="100%" xmlns="http://www.w3.org/2000/svg">
@@ -158,34 +157,35 @@ td.teal   { color:#56d4db; }
 
 <!-- FIX TCP Server :9876 -->
 <rect x="80" y="306" width="310" height="82" rx="8" fill="#2b0e0e" stroke="#f85149" stroke-width="1.5"/>
-<text x="235" y="330" text-anchor="middle" font-size="13" font-weight="700" fill="#ff7b72">FIX TCP Server · :9876</text>
-<text x="235" y="348" text-anchor="middle" font-size="10" fill="#8b949e">asyncio · FIXClientHandler · simplefix</text>
+<text x="235" y="330" text-anchor="middle" font-size="13" font-weight="700" fill="#ff7b72">FIX TCP Server </text>
+<text x="235" y="348" text-anchor="middle" font-size="10" fill="#8b949e">Nhận lệnh từ Client Terminal</text>
+<!--<text x="235" y="348" text-anchor="middle" font-size="10" fill="#8b949e">asyncio · FIXClientHandler · simplefix</text>
 <text x="235" y="364" text-anchor="middle" font-size="10" fill="#f85149">NewOrderSingle (D) · ExecutionReport (8)</text>
-<text x="235" y="380" text-anchor="middle" font-size="9" fill="#8b949e">Heartbeat · Sequence numbers · per-conn session</text>
+<text x="235" y="380" text-anchor="middle" font-size="9" fill="#8b949e">Heartbeat · Sequence numbers · per-conn session</text>-->
 
 <!-- FastAPI Engine :8000 -->
 <rect x="530" y="306" width="310" height="82" rx="10" fill="#0d2b14" stroke="#3fb950" stroke-width="2"/>
-<text x="685" y="330" text-anchor="middle" font-size="13" font-weight="700" fill="#56d364">⚡ FastAPI Engine · :8000</text>
+<text x="685" y="330" text-anchor="middle" font-size="13" font-weight="700" fill="#56d364">⚡ FASTAPI Engine</text>
 <text x="685" y="348" text-anchor="middle" font-size="10" fill="#8b949e">REST Router · AppState Singleton · match_order()</text>
-<text x="685" y="364" text-anchor="middle" font-size="10" fill="#3fb950">Single asyncio event loop · Validation · Sequencing</text>
+<text x="685" y="364" text-anchor="middle" font-size="10" fill="#3fb950">Validation · Sequencing</text>
 <text x="553" y="380" font-size="9" fill="#3fb950">POST /api/orders</text>
 <text x="660" y="380" font-size="9" fill="#3fb950">WS /ws/market-data</text>
 <text x="765" y="380" font-size="9" fill="#3fb950">WS /ws/admin</text>
 
 <!-- ── Client Terminal → FIX TCP (FIX 4.4 order submission) ── -->
 <line x1="235" y1="226" x2="235" y2="304" stroke="#f85149" stroke-width="2" marker-end="url(#ar)"/>
-<text x="243" y="262" font-size="9" fill="#f85149">FIX 4.4 · NewOrderSingle(D)</text>
+<text x="243" y="262" font-size="9" fill="#f85149">FIX 4.4 Protocol</text>
 
 <!-- Engine → Client via WS :8765 (market data broadcast) -->
 <path d="M 160 304 Q 120 272 112 226" stroke="#39d0d8" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#at)"/>
-<text x="95" y="270" font-size="9" fill="#39d0d8" text-anchor="end">ws://:8765</text>
+<text x="95" y="270" font-size="9" fill="#39d0d8" text-anchor="end">client ws://:8765</text>
 <text x="95" y="282" font-size="9" fill="#39d0d8" text-anchor="end">market-data</text>
 
 <!-- FIX → Engine (same event loop, internal call) -->
 <line x1="392" y1="338" x2="528" y2="338" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
 <text x="460" y="330" text-anchor="middle" font-size="9" fill="#f85149">match_order()</text>
 <line x1="528" y1="356" x2="392" y2="356" stroke="#f85149" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#ar)"/>
-<text x="460" y="372" text-anchor="middle" font-size="9" fill="#f85149">ExecutionReport(8)</text>
+<!--<text x="460" y="372" text-anchor="middle" font-size="9" fill="#f85149">ExecutionReport(8)</text>-->
 
 <!-- Admin → Engine REST -->
 <path d="M 720 226 Q 740 268 742 304" stroke="#8957e5" stroke-width="1.5" fill="none" marker-end="url(#ap)"/>
@@ -217,10 +217,9 @@ td.teal   { color:#56d4db; }
 <!-- VCK highlighted -->
 <rect x="702" y="452" width="168" height="96" rx="8" fill="#0b2429" stroke="#39d0d8" stroke-width="2.5" filter="url(#gvck)"/>
 <text x="786" y="476" text-anchor="middle" font-size="13" font-weight="700" fill="#56d4db">OrderBook[VCK]</text>
-<text x="786" y="492" text-anchor="middle" font-size="10" fill="#8b949e">SortedDict · FIFO</text>
-<text x="786" y="508" text-anchor="middle" font-size="10" fill="#56d4db">Floor 10,000 · Ceil 15,000</text>
-<text x="786" y="524" text-anchor="middle" font-size="10" fill="#56d4db">Step 100 · QtyStep 100</text>
-<text x="786" y="540" text-anchor="middle" font-size="9" fill="#39d0d8">★ Demo stock</text>
+<text x="786" y="502" text-anchor="middle" font-size="10" fill="#8b949e">SortedDict</text>
+<text x="786" y="518" text-anchor="middle" font-size="10" fill="#8b949e">Bids(neg) · Asks(pos)</text>
+<text x="786" y="532" text-anchor="middle" font-size="9" fill="#d29922">FIFO per price level</text>
 
 <!-- Engine → OrderBooks -->
 <path d="M 620 388 Q 500 424 140 460" stroke="#d29922" stroke-width="1.3" fill="none" marker-end="url(#ao)"/>
@@ -288,6 +287,49 @@ td.teal   { color:#56d4db; }
 </table>
 </div>
 
+<!-- ══════════════ Component Roles ══════════════ -->
+<p class="section-title">Vai trò từng thành phần</p>
+<div class="ep-wrap">
+<table>
+  <tr>
+    <th style="width:180px">Component</th>
+    <th>Vai trò</th>
+  </tr>
+  <tr>
+    <td class="blue" style="font-weight:700;white-space:nowrap">Client Terminal<br><span style="font-family:monospace;font-size:11px;color:#388bfd">:5173</span></td>
+    <td>Giao diện trader: đặt lệnh, xem order book, theo dõi trade feed real-time</td>
+  </tr>
+  <tr>
+    <td class="purple" style="font-weight:700;white-space:nowrap">Admin Panel<br><span style="font-family:monospace;font-size:11px;color:#8957e5">:3001</span></td>
+    <td>Điều khiển thị trường: mở/đóng phiên, chỉnh stock config, xem logs và số client</td>
+  </tr>
+  <tr>
+    <td class="green" style="font-weight:700;white-space:nowrap">FastAPI Engine<br><span style="font-family:monospace;font-size:11px;color:#3fb950">:8000</span></td>
+    <td>Gateway duy nhất: nhận REST + WebSocket, validate input, điều phối matching</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:#e3b341;white-space:nowrap"><code>app_state</code></td>
+    <td>Singleton trung tâm: toàn bộ trạng thái sàn (không dùng DB) — REST, WS, FIX cùng đọc ghi</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:#56d364;white-space:nowrap">Matching Engine</td>
+    <td>Logic khớp lệnh: price-time priority, trả về <code>list[Trade]</code>, stateless function</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:#e3b341;white-space:nowrap">OrderBook</td>
+    <td>Lưu lệnh chờ: bids (<code>SortedDict</code> key âm) + asks (<code>SortedDict</code> key dương), FIFO per level</td>
+  </tr>
+  <tr>
+    <td class="red" style="font-weight:700;white-space:nowrap">FIX Server<br><span style="font-family:monospace;font-size:11px;color:#f85149">:9876</span></td>
+    <td>Giao thức FIX 4.4: kết nối TCP cho hệ thống external, chung event loop với FastAPI</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:#bc8cff;white-space:nowrap"><code>StockConfig</code></td>
+    <td>Validate giá/khối lượng: floor / ceiling / price_step / qty_step cho ACB, FPT, VCK</td>
+  </tr>
+</table>
+</div>
+
 <!-- ══════════════ Step Cards ══════════════ -->
 <p class="section-title">Luồng xử lý chi tiết — Ví dụ: Mua VCK 200 @ 12,000</p>
 <div class="grid">
@@ -345,7 +387,7 @@ td.teal   { color:#56d4db; }
     <div class="card-title"><div class="num">6</div>Broadcast kết quả</div>
     <ul>
       <li>FIX Server gửi <code>ExecutionReport FILLED</code> về Client</li>
-      <li><code>ws://:8765</code> push Trade mới tới Client Terminal</li>
+      <li><code>client ws://:8765</code> push Trade mới tới Client Terminal</li>
       <li>Admin Panel: Trade History + Logs cập nhật</li>
       <li>Sequenced → có thể replay để recover state</li>
     </ul>
