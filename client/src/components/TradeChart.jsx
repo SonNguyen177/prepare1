@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { createChart, ColorType, CrosshairMode } from 'lightweight-charts'
+import { createChart, ColorType, CrosshairMode, CandlestickSeries, LineSeries, HistogramSeries } from 'lightweight-charts'
 
 const SYMBOL_COLORS = {
   ACB: '#3fb950',
@@ -137,7 +137,7 @@ export default function TradeChart({ trades, selectedSymbol, configs }) {
       const symTrades = trades.filter(t => t.symbol === sym)
       const candles = aggregateToCandles(symTrades)
 
-      const candleSeries = chart.addCandlestickSeries({
+      const candleSeries = chart.addSeries(CandlestickSeries, {
         upColor: '#3fb950',
         downColor: '#f85149',
         borderUpColor: '#3fb950',
@@ -148,7 +148,7 @@ export default function TradeChart({ trades, selectedSymbol, configs }) {
       candleSeries.setData(candles)
       seriesRef.current['candle'] = candleSeries
 
-      const volumeSeries = chart.addHistogramSeries({
+      const volumeSeries = chart.addSeries(HistogramSeries, {
         priceFormat: { type: 'volume' },
         priceScaleId: 'volume',
       })
@@ -164,7 +164,7 @@ export default function TradeChart({ trades, selectedSymbol, configs }) {
         const candles = aggregateToCandles(symTrades)
         const lineData = candlesToLine(candles)
 
-        const lineSeries = chart.addLineSeries({
+        const lineSeries = chart.addSeries(LineSeries, {
           color: SYMBOL_COLORS[sym] || '#c9d1d9',
           lineWidth: 2,
           title: sym,
@@ -177,7 +177,7 @@ export default function TradeChart({ trades, selectedSymbol, configs }) {
       if (activeSymbols.length === 1) {
         const symTrades = trades.filter(t => t.symbol === activeSymbols[0])
         const volCandles = aggregateToCandles(symTrades)
-        const volumeSeries = chart.addHistogramSeries({
+        const volumeSeries = chart.addSeries(HistogramSeries, {
           priceFormat: { type: 'volume' },
           priceScaleId: 'volume',
         })
@@ -190,11 +190,16 @@ export default function TradeChart({ trades, selectedSymbol, configs }) {
     }
 
     // Pin visible range to trading session 8h-15h (Vietnam time UTC+7)
-    const now = new Date()
-    const todayBase = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-    const from = Math.floor(todayBase.getTime() / 1000) + (8 * 3600) - (7 * 3600)
-    const to = Math.floor(todayBase.getTime() / 1000) + (15 * 3600) - (7 * 3600)
-    chart.timeScale().setVisibleRange({ from, to })
+    try {
+      const now = new Date()
+      const todayBase = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+      const from = Math.floor(todayBase.getTime() / 1000) + (8 * 3600) - (7 * 3600)
+      const to = Math.floor(todayBase.getTime() / 1000) + (15 * 3600) - (7 * 3600)
+      chart.timeScale().setVisibleRange({ from, to })
+    } catch (e) {
+      // setVisibleRange can throw when chart has no data — fall back to fitContent
+      chart.timeScale().fitContent()
+    }
   }, [trades, effectiveChartType, multiMode, activeSymbols.join(',')])
 
   const toggleSymbol = (sym) => {
